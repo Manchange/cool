@@ -1,0 +1,1 @@
+function run(n){n<1||(run(--n),console.log(n))}
