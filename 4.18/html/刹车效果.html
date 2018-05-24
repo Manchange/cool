@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>刹车效果</title>
+    <style type="text/css">
+        img{
+            width:200px;
+            height:100px;
+            vertical-align:bottom;
+            position:absolute;
+            left:0;
+            bottom:0;
+        }
+    </style>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded',()=>{
+            var img = document.querySelector('img');
+            var speed = 120;
+            var timer = setInterval(()=>{
+                speed-=6;
+                var left = img.offsetLeft + speed;
+                if(speed<=0){
+                    clearInterval(timer);
+                }
+                img.style.left = left+'px';
+            },30)
+        })
+    </script>
+</head>
+<body>
+    <img src="../images/car.jpg" alt="" />
+</body>
+</html>
