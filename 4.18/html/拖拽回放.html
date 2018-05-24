@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>拖拽回放</title>
+    <style type="text/css">
+        *{margin:0;padding:0;list-style:none;}
+        #box{
+            position:absolute;top:0;left:0;width: 200px;height: 200px;background: #abc;font-size:16px;
+        }
+        #box h2{
+            width:178px;height:30px;border:1px solid #ccc;padding:10px;
+        }
+        #box h2 a{
+            width:70px;height:30px;font-size:16px;float: right;border:1px solid #ccc;line-height:30px;text-decoration:none;padding:0 10px;color:#888;border-radius:10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h2><a href="#">点击回放</a></h2>
+        <ul>
+            <li>
+                <i>rag</i>
+                <span>false</span>
+            </li>
+            <li>
+                <i>left</i>
+                <span>0</span>
+            </li>
+            <li>
+                <i>top</i>
+                <span>0</span>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        (function(){
+            var box = document.getElementById('box');
+            var mov = box.children[0];
+            var btnback = mov.children[0];
+
+            var rag = box.children[1].children[0].children[1];
+            var uleft = box.children[1].children[1].children[1];
+            var utop = box.children[1].children[2].children[1];
+            var arr = [];
+            mov.onmousedown = function(e){
+                e = e ||window.event;
+                var ox = e.clientX - box.offsetLeft;
+                var oy = e.clientY - box.offsetTop;
+                rag.innerHTML = 'true';
+                arr[{
+                    left:box.offsetLeft,
+                    top:box.offsetTop
+                }];
+                document.onmousemove = function(eve){
+                    var setx = eve.clientX-ox;
+                    var sety = eve.clientY-oy;
+                    uleft.innerHTML = setx;
+                    utop.innerHTML = sety;
+                    arr.push({
+                        left:setx,
+                        top:sety
+                    });
+                    box.style.left = setx+'px';
+                    box.style.top = sety+'px';
+                    eve.preventDefault();
+                }
+                e.preventDefault();
+            }
+            document.onmouseup = function(){
+                document.onmousemove = null;
+                rag.innerHTML = 'false';
+            }
+            btnback.onmousedown = function(e){
+                var idx = arr.length-1;
+                var timer = setInterval(function(){
+                    box.style.left = arr[idx].left+'px';
+                    box.style.top = arr[idx].top+'px';
+                    uleft.innerHTML = arr[idx].left;
+                    utop.innerHTML = arr[idx].top;
+                    idx--
+                    if(idx<0){
+                        clearInterval(timer);
+                        arr=[];
+                    }
+                },30)
+                e.stopPropagation();
+            }
+        })()
+    </script>
+</body>
+</html>
