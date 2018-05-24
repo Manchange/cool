@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>验证码</title>
+    <style type="text/css">
+        span{
+            padding:0 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="get">
+        <label for="uma">用户名:</label><input type="text" name="user" /><br />
+        <label for="uma">用户名:</label><input type="password" name="password" /><br />
+        <label for="uma">验证码:</label><input type="text" id="uma" name="uma" /><span id="yanzm"></span><span id="output"></span><br />
+        <input type="button" id="signBtn" value="登录" />
+    </form>
+    
+    <script type="text/javascript">
+        var uma = document.getElementById("uma");
+        var yanzm = document.getElementById("yanzm");
+        var output = document.getElementById("output");
+        var signBtn = document.getElementById("signBtn");
+        var _yanzm = parseInt(Math.random()*9000+1000);
+            yanzm.innerHTML = _yanzm;
+        signBtn.onclick = function(){
+            var _uma = uma.value;
+            if(_uma == _yanzm){
+                document.write("登陆成功");
+            }else{
+                output.innerHTML = "请重新输入验证码！";
+                output.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
