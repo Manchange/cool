@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>shangpin</title>
+    <style type="text/css">
+        ul,li{
+            list-style:none;
+        }
+        del{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="goods">
+    </div>
+    <script type="text/javascript">
+        var goodsList = [
+        {
+            id:'001',
+            imgurl:'images/tnt.png',
+            name:'ashdfaois fjaoisf jasoif asnf ',
+            price:'$USD 2300',
+            sale:'$USD 2000',
+            color:'黑色',
+            save:'Save USD 30',
+        }
+        ,{
+            id:'002',
+            imgurl:'images/tnt1.png',
+            name:'ashdfaois fjaoisf jasoif asnf ',
+            price:'$USD 2300',
+            sale:'$USD 2000',
+            color:'黑色',
+            save:'',
+        }
+        ,{
+            id:'003',
+            imgurl:'images/tnt2.png',
+            name:'ashdfaois fjaoisf jasoif asnf ',
+            price:'$USD 2300',
+            sale:'$USD 2000',
+            color:'黑色',
+            save:'',
+        }
+        ]
+
+        // var content = '<ul>';
+        // for(i=0;i<goodsList.length;i++){
+        //     content+='<li>\n'+'<img src="'+goodsList[i].imgurl+'";>\n'+'<h4>'+goodsList[i].name+'</h4>\n'+'<p>原价：<del>'+goodsList[i].price+'</del><p>\n'+'<p>现价：'+goodsList[i].sale+'</p>\n'+'<p>颜色：'+goodsList[i].color+'</p>\n'+'</p>\n'+'<p>'+goodsList[i].save+'</p>\n'+'</li>';
+        // }
+        // content+='</ul>';
+        var  data= goodsList.map(function(data){
+            return '<li>\n'+'<img src="'+data.imgurl+'";>\n'+'<h4>'+data.name+'</h4>\n'+'<p>原价：<del>'+data.price+'</del><p>\n'+'<p>现价：'+data.sale+'</p>\n'+'<p>颜色：'+data.color+'</p>\n'+'</p>\n'+'<p>'+data.save+'</p>\n'+'</li>';
+        })
+        console.log()
+        var goods = document.getElementById('goods');
+        goods.innerHTML = data.join('');
+    </script>
+</body>
+</html>
