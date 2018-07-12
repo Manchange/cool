@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #langter,#header{
+                position:relative;
+                width:200px;
+                height:200px;
+            }
+            #langter{
+                width: 400px;
+                height: 400px;
+            }
+            .btn{
+                cursor:pointer;
+            }
+            .hid{
+                width: 50%;
+                height: 50%;
+                text-align:center;
+                line-height:300px;
+                font-size:30px;
+                color:#fff;
+                background:rgba(0,0,0,0.3);
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+            }
+            .close{
+                display:block;
+                width: 20px;
+                height: 20px;
+                color:#fff;
+                line-height:16px;
+                background:red;
+                position:absolute;
+                top:0;
+                right:0;
+                cursor:pointer;
+            }
+        </style>
+        <script src="../js/vue.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="demo">
+            
+        </div>
+        <div id="lang"></div>
+        <script>
+            Vue.component("dan",{
+                data(){
+                    return {
+                        bool:'false',
+                        content:'这是一个弹窗'
+                    }
+                },
+                methods: {
+                    show(bool){
+                        this.bool = bool;
+                    }
+                },
+                template:`
+                <div :style="{
+                    'marginTop':'20px'
+                }">
+                    <button class="btn" @click="show('ture')">显示</button>
+                    <div :class="{hid:bool==='ture'}" v-show="bool==='ture'">
+                        <span v-html="content"></span>
+                        <i :class="{close:bool==='ture'}" @click="show('false')">&times;</i>
+                    </div>
+                </div>
+                `
+            })
+            new Vue({
+                el:'#demo',
+                template:`
+                    <div id="header">
+                        <dan />
+                    </div>
+                `
+            });
+            new Vue({
+                el:'#lang',
+                template:`
+                    <div id="langter">
+                        <dan />
+                    </div>
+                `
+            })
+        </script>
+    </body>
+</html>

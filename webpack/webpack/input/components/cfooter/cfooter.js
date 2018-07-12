@@ -1,0 +1,26 @@
+module.exports = {
+    cfooter(Vue){
+        Vue.component('cfooter',{
+            data(){
+                return{
+                    content:'这是尾部',
+                    fstyle:{
+                        display:'flex',
+                        height:'50px',
+                        backgroundColor:'#999',
+                        color:'#fff',
+                        lineHeight:'50px',
+                        fontSize:'30px',
+                        borderRadius:'10px',
+                        justifyContent:'center',
+                        position:'fixed',
+                        bottom:0,
+                        left:0,
+                        right:0
+                    }
+                }
+            },
+            template:require('./cfooter.html')
+        })
+    }
+}
